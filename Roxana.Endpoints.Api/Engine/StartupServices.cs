@@ -52,20 +52,21 @@ public static class StartupServices
         
         services.Configure<IdentityOptions>(IdentityConfiguration.ConfigureOptions);
         services
-            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = issuer,
-                    ValidAudience = issuer,
-                    IssuerSigningKey = new SymmetricSecurityKey(key)
-                };
-            });
+            .AddAuthentication();
+            // .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            // .AddJwtBearer(options =>
+            // {
+            //     options.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuer = true,
+            //         ValidateAudience = true,
+            //         ValidateLifetime = true,
+            //         ValidateIssuerSigningKey = true,
+            //         ValidIssuer = issuer,
+            //         ValidAudience = issuer,
+            //         IssuerSigningKey = new SymmetricSecurityKey(key)
+            //     };
+            // });
 
         services.AddControllers();
         services.AddRazorPages();

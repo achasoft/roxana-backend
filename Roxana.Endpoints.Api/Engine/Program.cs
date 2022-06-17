@@ -42,6 +42,11 @@ namespace Roxana.Endpoints.Api.Engine
                 {
                     webBuilder
                         .ConfigureAppConfiguration((hostingContext, cfg) => { })
+                        .ConfigureLogging(logging =>
+                        {
+                            logging.ClearProviders();
+                            logging.AddConsole();
+                        })
                         .UseKestrel(options =>
                         {
                             options.Limits.MaxRequestBodySize = 1048576000; //1024MB

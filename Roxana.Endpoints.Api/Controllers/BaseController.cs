@@ -6,11 +6,9 @@ using Roxana.Endpoints.Api.Filters;
 using Roxana.Endpoints.Api.Models.Membership;
 
 namespace Roxana.Endpoints.Api.Controllers;
-
-[Localize]
 public abstract class BaseController : Controller
 {
-    private TokenClaimsViewModel _currentUser;
+    private TokenClaimsViewModel? _currentUser;
 
     protected TokenClaimsViewModel Identity
     {
@@ -18,15 +16,15 @@ public abstract class BaseController : Controller
         {
             try
             {
-                if (User == null || !User.Identity.IsAuthenticated) return new TokenClaimsViewModel();
+                if (User.Identity == null || !User.Identity.IsAuthenticated) 
+                    return new TokenClaimsViewModel();
+                
                 if (_currentUser == null)
                 {
-                    Enum.TryParse(User.FindFirstValue(RoxanaClaims.UserId), true, out UserType role);
-                    _currentUser = new TokenClaimsViewModel(
-                        User.FindFirstValue(RoxanaClaims.Username),
-                        Guid.Parse(User.FindFirstValue(RoxanaClaims.UserId)),
-                        role
-                    );
+                    var userId = User.FindFirstValue(RoxanaClaims.UserId);
+                    var username = User.FindFirstValue(RoxanaClaims.Username);
+                    Enum.TryParse(userId, true, out UserType role);
+                    _currentUser = new TokenClaimsViewModel(username, Guid.Parse(userId), role);
                 }
 
                 return _currentUser;

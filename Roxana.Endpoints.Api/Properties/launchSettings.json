@@ -1,30 +1,16 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:5631",
-      "sslPort": 44318
-    }
-  },
   "profiles": {
     "Roxana.Endpoints.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7220;http://localhost:5163",
+      "applicationUrl": "http://localhost:5020",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "APP_AUTH_ISSUER": "ROXANA",
+        "APP_AUTH_SECRET": "sP7ssRg4szCVBsLz5NJRdMJt6GbQu9yJ"
       }
     }
   }

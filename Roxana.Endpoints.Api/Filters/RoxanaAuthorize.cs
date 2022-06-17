@@ -6,19 +6,20 @@ using Roxana.Application.Core.Enums.Membership;
 
 namespace Roxana.Endpoints.Api.Filters
 {
-    public class JwtAuthorize : IAuthorizationFilter
+    public class RoxanaAuthorize : IAsyncAuthorizationFilter
     {
         private readonly UserType _role;
 
-        public JwtAuthorize(UserType role)
+        public RoxanaAuthorize(UserType role)
         {
             _role = role;
         }
 
-        public void OnAuthorization(AuthorizationFilterContext context)
+        public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-            var roles = context.Filters.Where(f => f is JwtAuthorize)
-                .Cast<JwtAuthorize>()
+            var roles = context.Filters
+                .Where(f => f is RoxanaAuthorize)
+                .Cast<RoxanaAuthorize>()
                 .Select(j => j._role)
                 .ToArray();
             
@@ -30,23 +31,21 @@ namespace Roxana.Endpoints.Api.Filters
             
             var denied = new UnauthorizedResult();
             string token = context.HttpContext.Request.Headers["Authorization"];
-            if (string.IsNullOrEmpty(token)) token = context.HttpContext.Request.Cookies["Authorization"];
-            
             if (string.IsNullOrEmpty(token) || string.IsNullOrWhiteSpace(token))
             {
                 context.Result = denied;
                 return;
             }
 
-            var accountBiz = context.HttpContext.RequestServices.GetService<IAccountService>();
-            var principal = accountBiz.ExtractToken(token, _role);
+            var accountBiz = context.HttpContext.RequestServices.GetService<IAccountService>()!;
+            var principal = await accountBiz.ValidateToken(token, _role);
             if (principal == null)
             {
                 context.Result = denied;
                 return;
             }
-
-            context.HttpContext.SignInAsync(principal);
+            
+            // await context.HttpContext.SignInAsync(principal);
         }
     }
 }

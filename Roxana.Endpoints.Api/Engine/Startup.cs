@@ -10,12 +10,6 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        // app.UseCookiePolicy(new CookiePolicyOptions
-        // {
-        //     MinimumSameSitePolicy = SameSiteMode.Lax,
-        //     Secure = CookieSecurePolicy.SameAsRequest,
-        //     CheckConsentNeeded = context => true
-        // });
         if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
         app.UseSwagger();
         app.UseSwaggerUI(c =>
@@ -24,6 +18,7 @@ public class Startup
             c.RoutePrefix = "";
             c.DocumentTitle = "Roxana Api";
         });
+        app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();

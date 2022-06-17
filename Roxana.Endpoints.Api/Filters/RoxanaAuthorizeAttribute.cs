@@ -3,10 +3,10 @@ using Roxana.Application.Core.Enums.Membership;
 
 namespace Roxana.Endpoints.Api.Filters
 {
-    public class JwtAuthorizeAttribute : TypeFilterAttribute
+    public class RoxanaAuthorizeAttribute : TypeFilterAttribute
     {
-        public JwtAuthorizeAttribute(UserType accountType = UserType.User)
-            : base(typeof(JwtAuthorize))
+        public RoxanaAuthorizeAttribute(UserType accountType = UserType.User)
+            : base(typeof(RoxanaAuthorize))
         {
             Arguments = new object[] {accountType};
         }
