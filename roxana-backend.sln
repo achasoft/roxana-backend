@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundServices", "BackgroundServices", "{6C51CF85-4F6C-429C-9609-F42A0A8DD45B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Endpoints", "Endpoints", "{55EED574-9C63-4C27-A763-A39412D166C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{E4B70915-0155-4083-AC8B-D9750ABAAEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.Application.Business", "Roxana.Application.Business\Roxana.Application.Business.csproj", "{634EAEE8-7B07-45AE-AEBA-F060EC313192}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.Application.Core", "Roxana.Application.Core\Roxana.Application.Core.csproj", "{6BCDD9C5-85D3-4681-AB8B-4862892837CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.Application.Data", "Roxana.Application.Data\Roxana.Application.Data.csproj", "{CE3CC814-B9D6-4B19-A111-F5E66B4D3EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.BackgroundServices.WhatsappPersonal", "Roxana.BackgroundServices.WhatsappPersonal\Roxana.BackgroundServices.WhatsappPersonal.csproj", "{0621C987-6D84-4FD0-973E-03B2EFA214FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.BackgroundServices.WhatsappBusiness", "Roxana.BackgroundServices.WhatsappBusiness\Roxana.BackgroundServices.WhatsappBusiness.csproj", "{C29F7682-0637-4307-8935-B4511E73A952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.Endpoints.Api", "Roxana.Endpoints.Api\Roxana.Endpoints.Api.csproj", "{A1A85CC9-0310-48E7-A453-701EC30F3A04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.Endpoints.WhatsappPersonal", "Roxana.Endpoints.WhatsappPersonal\Roxana.Endpoints.WhatsappPersonal.csproj", "{021CD6FB-C1AF-4C8C-BE28-E7617502DEE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roxana.Endpoints.WhatsappBusiness", "Roxana.Endpoints.WhatsappBusiness\Roxana.Endpoints.WhatsappBusiness.csproj", "{E0A3799B-6DC1-4012-A6E1-CAB089CEAA74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{634EAEE8-7B07-45AE-AEBA-F060EC313192} = {E4B70915-0155-4083-AC8B-D9750ABAAEEE}
+		{6BCDD9C5-85D3-4681-AB8B-4862892837CB} = {E4B70915-0155-4083-AC8B-D9750ABAAEEE}
+		{CE3CC814-B9D6-4B19-A111-F5E66B4D3EFF} = {E4B70915-0155-4083-AC8B-D9750ABAAEEE}
+		{0621C987-6D84-4FD0-973E-03B2EFA214FF} = {6C51CF85-4F6C-429C-9609-F42A0A8DD45B}
+		{C29F7682-0637-4307-8935-B4511E73A952} = {6C51CF85-4F6C-429C-9609-F42A0A8DD45B}
+		{A1A85CC9-0310-48E7-A453-701EC30F3A04} = {55EED574-9C63-4C27-A763-A39412D166C0}
+		{021CD6FB-C1AF-4C8C-BE28-E7617502DEE0} = {55EED574-9C63-4C27-A763-A39412D166C0}
+		{E0A3799B-6DC1-4012-A6E1-CAB089CEAA74} = {55EED574-9C63-4C27-A763-A39412D166C0}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{634EAEE8-7B07-45AE-AEBA-F060EC313192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634EAEE8-7B07-45AE-AEBA-F060EC313192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634EAEE8-7B07-45AE-AEBA-F060EC313192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634EAEE8-7B07-45AE-AEBA-F060EC313192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BCDD9C5-85D3-4681-AB8B-4862892837CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BCDD9C5-85D3-4681-AB8B-4862892837CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BCDD9C5-85D3-4681-AB8B-4862892837CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BCDD9C5-85D3-4681-AB8B-4862892837CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE3CC814-B9D6-4B19-A111-F5E66B4D3EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3CC814-B9D6-4B19-A111-F5E66B4D3EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3CC814-B9D6-4B19-A111-F5E66B4D3EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3CC814-B9D6-4B19-A111-F5E66B4D3EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0621C987-6D84-4FD0-973E-03B2EFA214FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0621C987-6D84-4FD0-973E-03B2EFA214FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0621C987-6D84-4FD0-973E-03B2EFA214FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0621C987-6D84-4FD0-973E-03B2EFA214FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C29F7682-0637-4307-8935-B4511E73A952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C29F7682-0637-4307-8935-B4511E73A952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C29F7682-0637-4307-8935-B4511E73A952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C29F7682-0637-4307-8935-B4511E73A952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1A85CC9-0310-48E7-A453-701EC30F3A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1A85CC9-0310-48E7-A453-701EC30F3A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1A85CC9-0310-48E7-A453-701EC30F3A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1A85CC9-0310-48E7-A453-701EC30F3A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021CD6FB-C1AF-4C8C-BE28-E7617502DEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021CD6FB-C1AF-4C8C-BE28-E7617502DEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021CD6FB-C1AF-4C8C-BE28-E7617502DEE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021CD6FB-C1AF-4C8C-BE28-E7617502DEE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A3799B-6DC1-4012-A6E1-CAB089CEAA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A3799B-6DC1-4012-A6E1-CAB089CEAA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A3799B-6DC1-4012-A6E1-CAB089CEAA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A3799B-6DC1-4012-A6E1-CAB089CEAA74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
