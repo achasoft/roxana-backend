@@ -1,0 +1,5 @@
+export APP_DB_CONNECTION='server=localhost;database=roxana_development;user=root;password=roxanadb123456'
+
+dotnet ef migrations add init --context=ApplicationDbContext --startup-project=../Roxana.Endpoints.Api/Roxana.Endpoints.Api.csproj
+
+dotnet ef database update --context=ApplicationDbContext --startup-project=../Roxana.Endpoints.Api/Roxana.Endpoints.Api.csproj

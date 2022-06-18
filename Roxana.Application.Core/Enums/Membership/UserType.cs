@@ -2,8 +2,8 @@ namespace Roxana.Application.Core.Enums.Membership;
 
 public enum UserType
 {
-    Admin = 1,
-    User = 2,
-    
-    Anonymous = 10,
+    Anonymous = 0,
+    User = 1,
+    Admin = 2,
+    Roxana = 100,
 }
