@@ -9,6 +9,7 @@ using Roxana.Application.Core.Helpers;
 using Roxana.Application.Core.Models.Membership;
 using Roxana.Application.Data.Contextes;
 using Roxana.Application.Data.Models;
+using Z.EntityFramework.Plus;
 
 namespace Roxana.Application.Business.Implementations;
 
@@ -158,6 +159,25 @@ internal class AccountService : IAccountService
         {
             _serviceProvider.GetService<ILogger>()!.LogError(ex, "Token validation failed for : {0}", hash);
             return null;
+        }
+    }
+
+    public async Task<OperationResult<bool>> DeleteToken(Guid userId, string token)
+    {
+        try
+        {
+            using (var unit = _serviceProvider.GetService<AuthorizeDbContext>())
+            {
+                var affected = await unit.Tokens
+                    .Where(i => i.UserId == userId && i.Hash == token)
+                    .DeleteAsync();
+                return OperationResult<bool>.Success(affected > 0);
+            }
+        }
+        catch (Exception ex)
+        {
+            _serviceProvider.GetService<ILogger>()!.LogError(ex, "Token delete failed for : {0}", token);
+            return OperationResult<bool>.Fail();
         }
     }
 }

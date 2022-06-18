@@ -10,4 +10,5 @@ public interface IAccountService
     Task<OperationResult<AccountSigninResponseDto>> Sigin(AccountSigninRequestDto model);
     Task<OperationResult<AccountProfileDto>> Profile(Guid userId);
     Task<ClaimsPrincipal?> ValidateToken(string token, UserType role);
+    Task<OperationResult<bool>> DeleteToken(Guid identityUserId, string token);
 }

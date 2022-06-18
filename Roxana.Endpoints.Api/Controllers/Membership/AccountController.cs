@@ -24,6 +24,16 @@ public class AccountController : BaseController
         return Json(op);
     }
     
+    [HttpDelete]
+    [Route("token")]
+    [RoxanaAuthorize]
+    public async Task<IActionResult> DeleteToken()
+    {
+        var token = Request.Headers["Authorization"].ToString();
+        var op = await _accountService.DeleteToken(Identity.UserId, token);
+        return Json(op);
+    }
+    
     [HttpGet]
     [Route("profile")]
     [RoxanaAuthorize]
