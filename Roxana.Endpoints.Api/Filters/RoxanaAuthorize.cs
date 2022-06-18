@@ -44,8 +44,9 @@ namespace Roxana.Endpoints.Api.Filters
                 context.Result = denied;
                 return;
             }
-            
-            // await context.HttpContext.SignInAsync(principal);
+
+            context.HttpContext.User = principal;
+            //await context.HttpContext.SignInAsync(principal);
         }
     }
 }

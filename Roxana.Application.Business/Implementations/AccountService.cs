@@ -47,7 +47,7 @@ internal class AccountService : IAccountService
         }));
     }
 
-    public Task<ClaimsPrincipal?> ValidateToken(string token, UserType role)
+    public async Task<ClaimsPrincipal?> ValidateToken(string token, UserType role)
     {
         var identities = new List<ClaimsIdentity>
         {
@@ -63,7 +63,7 @@ internal class AccountService : IAccountService
                 roleType: "roxana"
             )
         };
-        var result = new ClaimsPrincipal(identities);
-        return Task.FromResult(result);
+        await Task.Delay(200);
+        return new ClaimsPrincipal(identities);
     }
 }
