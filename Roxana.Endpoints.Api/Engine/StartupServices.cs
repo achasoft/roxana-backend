@@ -11,12 +11,6 @@ public static class StartupServices
 {
     public static void Register(IServiceCollection services)
     {
-        var issuer = Environment.GetEnvironmentVariable("APP_AUTH_ISSUER") ?? "";
-        var secret = Environment.GetEnvironmentVariable("APP_AUTH_SECRET") ?? "";
-        
-        var key = Encoding.UTF8.GetBytes(secret);
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-        
         services.AddSwaggerGen(c =>
         {
             c.DocInclusionPredicate((_, api) => !string.IsNullOrWhiteSpace(api.GroupName));
@@ -51,24 +45,18 @@ public static class StartupServices
         });
         
         services.Configure<IdentityOptions>(IdentityConfiguration.ConfigureOptions);
-        services
-            .AddAuthentication();
-            // .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            // .AddJwtBearer(options =>
-            // {
-            //     options.TokenValidationParameters = new TokenValidationParameters
-            //     {
-            //         ValidateIssuer = true,
-            //         ValidateAudience = true,
-            //         ValidateLifetime = true,
-            //         ValidateIssuerSigningKey = true,
-            //         ValidIssuer = issuer,
-            //         ValidAudience = issuer,
-            //         IssuerSigningKey = new SymmetricSecurityKey(key)
-            //     };
-            // });
-
+        services.AddAuthentication();
         services.AddControllers();
+            // .AddNewtonsoftJson(options =>
+            // {
+            //     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            //     options.SerializerSettings.TypeNameHandling = TypeNameHandling.None;
+            //     options.SerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+            //     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            //     options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+            //     options.SerializerSettings.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffZ";
+            //     options.SerializerSettings.ContractResolver = new DefaultContractResolver { NamingStrategy = null };
+            // });
         services.AddRazorPages();
     }
 }

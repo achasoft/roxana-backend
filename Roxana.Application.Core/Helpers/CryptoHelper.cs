@@ -6,11 +6,139 @@ namespace Roxana.Application.Core.Helpers
     public static class CryptoHelper
     {
         private const int DerivationIterations = 1000;
-
-        private const string Key =
-            @"C3@kZGV&5BbDduSvWza9YqA?rtYK74AbJu$exg_FuDCCyN&K*4d=!n*Mn8ZkF*HSrzqKyf4Lsx#2VV^SK6cET2Y?_vVncheMbe7ZSqadArEtadne=g_PEe#+ZyT#*S4#";
-
         private const string ValidKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+
+        public static string EncryptPassword(string password, string salt)
+        {
+            var bytes = Encoding.UTF8.GetBytes(salt);
+            return ComputeHash(password, "SHA256", bytes);
+        }
+        public static bool VerifyPassword(string password, string hash)
+        {
+            return VerifyHash(password, "SHA256", hash);
+        }
+        
+        public static string ComputeHash(string plainText, string hashAlgorithm, byte[] saltBytes)
+        {
+            // Salt size
+            saltBytes = new byte[8];
+
+            // Convert Text to Array
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+
+            // Create Array
+            byte[] plainTextSaltBytes =
+                new byte[plainTextBytes.Length + saltBytes.Length];
+
+            // Copy Text into Array
+            for (int i = 0; i < plainTextBytes.Length; i++)
+                plainTextSaltBytes[i] = plainTextBytes[i];
+
+            // Append Salt
+            for (int i = 0; i < saltBytes.Length; i++)
+                plainTextSaltBytes[plainTextBytes.Length + i] = saltBytes[i];
+
+            // Algorithm
+            HashAlgorithm hash;
+
+            // Initialize Class
+            switch (hashAlgorithm.ToUpper())
+            {
+                case "SHA1":
+                    hash = new SHA1Managed();
+                    break;
+
+                case "SHA256":
+                    hash = new SHA256Managed();
+                    break;
+
+                case "SHA384":
+                    hash = new SHA384Managed();
+                    break;
+
+                case "SHA512":
+                    hash = new SHA512Managed();
+                    break;
+
+                default:
+                    hash = new MD5CryptoServiceProvider();
+                    break;
+            }
+
+            byte[] hashBytes = hash.ComputeHash(plainTextSaltBytes);
+
+            byte[] hashSaltBytes = new byte[hashBytes.Length +
+                                            saltBytes.Length];
+
+            // Hash to Array
+            for (int i = 0; i < hashBytes.Length; i++)
+                hashSaltBytes[i] = hashBytes[i];
+
+            // Append Salt
+            for (int i = 0; i < saltBytes.Length; i++)
+                hashSaltBytes[hashBytes.Length + i] = saltBytes[i];
+
+            // Convert result into a base64-encoded string.
+            string hashValue = Convert.ToBase64String(hashSaltBytes);
+
+            // Return Result
+            return hashValue;
+        }
+
+        public static bool VerifyHash(string plainText,
+            string hashAlgorithm,
+            string hashValue)
+        {
+            // Base64-encoded hash
+            byte[] hashWithSaltBytes = Convert.FromBase64String(hashValue);
+
+            // Hash without Salt
+            int hashSizeInBits, hashSizeInBytes;
+
+            // Size of hash is based on the specified algorithm.
+            switch (hashAlgorithm.ToUpper())
+            {
+                case "SHA1":
+                    hashSizeInBits = 160;
+                    break;
+
+                case "SHA256":
+                    hashSizeInBits = 256;
+                    break;
+
+                case "SHA384":
+                    hashSizeInBits = 384;
+                    break;
+
+                case "SHA512":
+                    hashSizeInBits = 512;
+                    break;
+
+                default: // MD5
+                    hashSizeInBits = 128;
+                    break;
+            }
+
+            // Convert to bytes.
+            hashSizeInBytes = hashSizeInBits / 8;
+
+            // Verify Hash Length
+            if (hashWithSaltBytes.Length < hashSizeInBytes)
+                return false;
+
+            // Array to hold Salt
+            byte[] saltBytes = new byte[hashWithSaltBytes.Length -
+                                        hashSizeInBytes];
+
+            // Salt to New Array
+            for (int i = 0; i < saltBytes.Length; i++)
+                saltBytes[i] = hashWithSaltBytes[hashSizeInBytes + i];
+
+            string expectedHashString =
+                ComputeHash(plainText, hashAlgorithm, saltBytes);
+
+            return (hashValue == expectedHashString);
+        }
 
         public static string Base64Decode(string base64EncodedData)
         {
@@ -38,7 +166,7 @@ namespace Roxana.Application.Core.Helpers
             return new Random().Next(1000000, 10000000);
         }
 
-        public static string DecryptRijndael(string cipherText, string key = Key, int blockSize = 128)
+        public static string DecryptRijndael(string cipherText, string key, int blockSize = 128)
         {
             var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);
             var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(blockSize / 8).ToArray();
@@ -72,7 +200,7 @@ namespace Roxana.Application.Core.Helpers
             }
         }
 
-        public static string DecryptSHA512(string encryptedText, string key = Key)
+        public static string DecryptSHA512(string encryptedText, string key)
         {
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentException("Key must have valid value.", nameof(key));
@@ -114,7 +242,7 @@ namespace Roxana.Application.Core.Helpers
             }
         }
 
-        public static string EncryptRijndael(string plainText, string key = Key, int blockSize = 128)
+        public static string EncryptRijndael(string plainText, string key, int blockSize = 128)
         {
             var saltStringBytes = Generate256BitsOfRandomEntropy(blockSize);
             var ivStringBytes = Generate256BitsOfRandomEntropy(blockSize);
@@ -148,7 +276,7 @@ namespace Roxana.Application.Core.Helpers
             }
         }
 
-        public static string EncryptSHA512(string text, string key = Key)
+        public static string EncryptSHA512(string text, string key)
         {
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentException("Key must have valid value.", nameof(key));

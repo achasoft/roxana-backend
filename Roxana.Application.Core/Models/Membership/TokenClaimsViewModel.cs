@@ -4,12 +4,13 @@ namespace Roxana.Application.Core.Models.Membership;
 
 public class TokenClaimsViewModel
 {
-    public TokenClaimsViewModel(string username, Guid userId, UserType type = UserType.User)
+    public TokenClaimsViewModel(string username, Guid userId, UserType type = UserType.User, DateTime? expires = null)
     {
         IsAuthenticated = true;
         UserId = userId;
         Username = username;
         UserType = type;
+        Expires = expires;
     }
 
     public TokenClaimsViewModel()
@@ -21,7 +22,8 @@ public class TokenClaimsViewModel
     }
 
     public bool IsAuthenticated { get; private set; }
-    public Guid UserId { get; private set; }
-    public string Username { get; private set; }
-    public UserType UserType { get; private set; }
+    public Guid UserId { get; set; }
+    public string Username { get; set; }
+    public DateTime? Expires { get; set; }
+    public UserType UserType { get; set; }
 }
