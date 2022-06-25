@@ -9,7 +9,7 @@
       "applicationUrl": "http://localhost:5020",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "APP_DB_CONNECTION": "server=localhost;database=roxana_development;user=root;password=roxanadb123456",
+        "APP_DB_CONNECTION": "Server=localhost;Port=5432;Database=roxana_db;User Id=db_user_4s553sDJp8Bq6BFH;Password=S249SVHEsFKwKNXnnSdrK3M5heE2nLLV;",
         "APP_AUTH_ISSUER": "ROXANA",
         "APP_AUTH_SECRET": "sP7ssRg4szCVBsLz5NJRdMJt6GbQu9yJ"
       }

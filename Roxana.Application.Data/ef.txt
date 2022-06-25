@@ -1,4 +1,14 @@
-export APP_DB_CONNECTION='server=localhost;database=roxana_development;user=root;password=roxanadb123456'
+docker run -d \
+	--name roxana-db \
+	-e POSTGRES_USER=db_user_4s553sDJp8Bq6BFH \
+	-e POSTGRES_PASSWORD=S249SVHEsFKwKNXnnSdrK3M5heE2nLLV \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
+	-v /Users/navidkianfar/temp/postgress:/var/lib/postgresql/data \
+    -p 5432:5432 \
+	postgres
+
+
+export APP_DB_CONNECTION='Server=localhost;Port=5432;Database=roxana_db;User Id=db_user_4s553sDJp8Bq6BFH;Password=S249SVHEsFKwKNXnnSdrK3M5heE2nLLV;'
 
 dotnet ef migrations add init --context=ApplicationDbContext --startup-project=../Roxana.Endpoints.Api/Roxana.Endpoints.Api.csproj
 
