@@ -12,6 +12,7 @@ public class StartupServices
         services.AddSingleton<IJsonService, JsonService>();
         services.AddSingleton<IServerInfo, ServerInfo>();
         services.AddTransient<IAccountService, AccountService>();
+        services.AddTransient<IContactService, ContactService>();
         
         Data.StartupServices.Register(services);
     }

@@ -8,6 +8,21 @@ public class OperationResult<T>
     public OperationResultStatus Status { get; set; }
     public string Message { get; set; }
     
+    public static OperationResult<GridResult<X>> EmptyResult<X>()
+    {
+        return new OperationResult<GridResult<X>>
+        {
+            Data = new GridResult<X>
+            {
+                Items = Array.Empty<X>(),
+                Page = 1,
+                PageSize = 10,
+                TotalItems = 0
+            },
+            Status = OperationResultStatus.Success
+        };
+    }
+    
     public static OperationResult<T> Success(T data = default, string message = null)
     {
         return new OperationResult<T>
