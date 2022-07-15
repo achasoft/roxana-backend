@@ -15,7 +15,7 @@ public class ContactController : BaseController
     {
         _contactService = contactService;
     }
-    
+
     [HttpPost]
     [Route("list-paginated")]
     public async Task<IActionResult> ListPaginated([FromBody] GridFilterWithParams<SpaceParamDto> model)

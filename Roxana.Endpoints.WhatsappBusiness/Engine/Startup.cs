@@ -1,4 +1,4 @@
-namespace Roxana.Endpoints.Api.Engine;
+namespace Roxana.Endpoints.WhatsappBusiness.Engine;
 
 public class Startup
 {

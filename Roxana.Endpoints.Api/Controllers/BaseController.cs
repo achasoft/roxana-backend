@@ -1,10 +1,10 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Roxana.Application.Core.Base;
 using Roxana.Application.Core.Enums.Membership;
 using Roxana.Application.Core.Models.Membership;
 
 namespace Roxana.Endpoints.Api.Controllers;
+
 public abstract class BaseController : Controller
 {
     private TokenClaimsViewModel? _currentUser;
@@ -15,11 +15,11 @@ public abstract class BaseController : Controller
         {
             try
             {
-                if (User.Identity == null || !User.Identity.IsAuthenticated) 
+                if (User.Identity == null || !User.Identity.IsAuthenticated)
                     return new TokenClaimsViewModel();
 
                 var claims = User.Identities.First().Claims.ToArray();
-                
+
                 if (_currentUser == null)
                 {
                     var userType = claims.First(c => c.Type == RoxanaClaims.AuthUserType).Value;

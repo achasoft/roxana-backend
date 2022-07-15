@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Roxana.Endpoints.Api.Engine;
+namespace Roxana.Endpoints.WhatsappBusiness.Engine;
 
 public static class StartupServices
 {
@@ -21,8 +20,6 @@ public static class StartupServices
             });
         });
 
-        services.Configure<IdentityOptions>(IdentityConfiguration.ConfigureOptions);
-        services.AddAuthentication();
         services.AddControllers()
             .AddNewtonsoftJson(options =>
             {

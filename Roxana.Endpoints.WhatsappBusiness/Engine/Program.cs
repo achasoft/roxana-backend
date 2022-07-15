@@ -1,7 +1,6 @@
 using System.Net;
-using Roxana.Application.Core.Contracts;
 
-namespace Roxana.Endpoints.Api.Engine;
+namespace Roxana.Endpoints.WhatsappBusiness.Engine;
 
 public class Program
 {
@@ -12,16 +11,6 @@ public class Program
         {
             try
             {
-                var configuration = scope.ServiceProvider.GetService<IConfiguration>();
-                var serverInfo = scope.ServiceProvider.GetService<IServerInfo>();
-                // serverInfo.IsDevelopment = scope.ServiceProvider.GetService<IWebHostEnvironment>().IsDevelopment();
-                // serverInfo.RootPath = configuration.GetValue<string>(WebHostDefaults.ContentRootKey);
-                // serverInfo.ContentRootPath = Path.Combine(serverInfo.RootPath, "wwwroot");
-                // serverInfo.FilesRootPath = Path.Combine(serverInfo.ContentRootPath, "storage");
-                // serverInfo.I18nRootPath = Path.Combine(serverInfo.RootPath, "I18n");
-                // serverInfo.EmailsRootPath = Path.Combine(serverInfo.RootPath, "templates/email");
-                // serverInfo.SmsRootPath = Path.Combine(serverInfo.RootPath, "templates/sms");
-                // serverInfo.ReportsRootPath = Path.Combine(serverInfo.RootPath, "templates/reports");
             }
             catch (Exception ex)
             {
@@ -36,7 +25,7 @@ public class Program
     {
         var config = new ConfigurationBuilder().AddCommandLine(args).Build();
         var ip = config.GetValue<string>("ip") ?? "0.0.0.0";
-        var httpPort = config.GetValue<int?>("port") ?? 5020;
+        var httpPort = config.GetValue<int?>("port") ?? 5021;
         return Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {

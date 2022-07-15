@@ -15,7 +15,7 @@ public class AccountController : BaseController
     {
         _accountService = accountService;
     }
-    
+
     [HttpPost]
     [Route("signin")]
     public async Task<IActionResult> Signin([FromBody] AccountSigninRequestDto model)
@@ -23,7 +23,7 @@ public class AccountController : BaseController
         var op = await _accountService.Sigin(model);
         return Json(op);
     }
-    
+
     [HttpDelete]
     [Route("token")]
     [RoxanaAuthorize]
@@ -33,7 +33,7 @@ public class AccountController : BaseController
         var op = await _accountService.DeleteToken(Identity.UserId, token);
         return Json(op);
     }
-    
+
     [HttpGet]
     [Route("profile")]
     [RoxanaAuthorize]
