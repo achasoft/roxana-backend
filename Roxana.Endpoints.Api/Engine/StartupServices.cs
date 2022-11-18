@@ -32,7 +32,11 @@ public static class StartupServices
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
                 options.SerializerSettings.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffZ";
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver {NamingStrategy = null};
+                // options.SerializerSettings.ContractResolver = new DefaultContractResolver {NamingStrategy = null};
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                };
             });
         services.AddRazorPages();
     }
